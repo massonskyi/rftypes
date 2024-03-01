@@ -1,6 +1,6 @@
 use pyo3::prelude::*;
 #[pyclass]
-struct UInt8 {
+pub struct UInt8 {
     value: u8,
 }
 

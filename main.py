@@ -1,6 +1,6 @@
-import rftypes
+import rftypes as rft
 
-
-print(rftypes.__version__)
-
+x = rft.UInt8(25)
+print(rft.__version__)
+print(x.get_value())
 
