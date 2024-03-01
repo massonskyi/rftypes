@@ -1,19 +1,18 @@
 use pyo3::prelude::*;
-use pyo3::types::{PyDict, PyInt, PyList, PyString, PyTuple};
+use pyo3::types::{PyDict, PyString, PyTuple};
 mod uint8;
+mod filter;
+mod functions;
+
 use crate::uint8::UInt8;
-#[pyfunction]
-fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
-    Ok((a + b).to_string())
-}
-
-
+use crate::filter::Filter;
+use crate::functions::sum_as_string;
 #[pymodule]
-fn rftypes(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
+fn fastmath(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
     m.add_class::<UInt8>()?;
+    m.add_class::<Filter>()?;
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
     m.add("__version__", env!("CARGO_PKG_VERSION"))?;
-
     Ok(())
 }
 
